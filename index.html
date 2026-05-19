@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive medical guide on Acute Abdomen (Abdómen Agudo). Complete clinical reference for diagnosis, differential diagnosis by quadrants, age factors, clinical evaluation, laboratory/imaging investigations, and management protocols.">
+    <meta name="keywords" content="abdomen agudo, acute abdomen, cirurgia geral, general surgery, medical education, clinical guide, diagnosis, management">
+    <meta name="author" content="Surgery 101 - Faculdade de Medicina">
+    <meta name="theme-color" content="#1a5490">
+    <meta property="og:title" content="Abdómen Agudo - Interactive Medical Guide">
+    <meta property="og:description" content="Complete clinical reference for Acute Abdomen diagnosis and management">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/abdomen-agudo/">
+    <title>Abdómen Agudo - Guia Clínico Completo | Cirurgia Geral</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a5490;
+            --secondary-color: #2874a6;
+            --accent-color: #e74c3c;
+            --warning-color: #f39c12;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --info-color: #3498db;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-color: #ddd;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            font-size: 1.5em;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand::before {
+            content: "⚕️";
+            font-size: 1.2em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 80px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar-search {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-search input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin: 0.5rem 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--light-bg);
+            color: var(--primary-color);
+            border-left: 3px solid var(--accent-color);
+            padding-left: calc(1rem - 3px);
+        }
+
+        .sidebar-menu a.active {
+            background: var(--light-bg);
+            color: var(--primary-color);
+            border-left: 3px solid var(--accent-color);
+            padding-left: calc(1rem - 3px);
+            font-weight: 600;
+        }
+
+        /* Content Area */
+        .content {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Header Section */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .header-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-section p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .course-info-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 3rem;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.3em;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Content Styles */
+        .content-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .content-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .content-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            border-left: 4px solid;
+        }
+
+        .emphasis-box {
+            background: #e8f4f8;
+            border-color: var(--info-color);
+        }
+
+        .comparison-box {
+            background: #ecf0f1;
+            border-color: var(--info-color);
+        }
+
+        .clinical-pearl {
+            background: #fff3cd;
+            border-color: var(--warning-color);
+            color: #856404;
+            font-style: italic;
+        }
+
+        .danger-sign {
+            background: #f8d7da;
+            border-color: var(--danger-color);
+            color: #721c24;
+        }
+
+        .management-step {
+            background: #d4edda;
+            border-color: var(--success-color);
+            color: #155724;
+        }
+
+        .info-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        /* Grid Layout */
+        .quadrant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .quadrant-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .quadrant-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.05em;
+        }
+
+        .quadrant-box p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        .age-timeline {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .age-period {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: white;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .age-period strong {
+            color: var(--primary-color);
+            font-size: 1.05em;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95em;
+        }
+
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+        }
+
+        table tr:hover {
+            background: var(--light-bg);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .quadrant-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-info-box {
+                grid-template-columns: 1fr;
+            }
+
+            .header-section h1 {
+                font-size: 1.8em;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 0.25rem;
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-brand">Abdómen Agudo</a>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('introducao')">Introdução</a></li>
+                <li><a onclick="scrollToSection('fisiopatologia')">Fisiopatologia</a></li>
+                <li><a onclick="scrollToSection('diagnostico')">Diagnóstico</a></li>
+                <li><a onclick="scrollToSection('avaliacao')">Avaliação</a></li>
+                <li><a onclick="scrollToSection('management')">Management</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" role="navigation" aria-label="Table of contents">
+            <div class="sidebar-title">📑 Índice</div>
+            
+            <div class="sidebar-search">
+                <input type="text" id="searchInput" placeholder="Pesquisar...">
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="goToSection('home')" class="active">🏠 Início</a></li>
+                <li><a href="#" onclick="goToSection('introducao')">📌 Introdução</a></li>
+                <li><a href="#" onclick="goToSection('apresentacoes')">🔍 Apresentações</a></li>
+                <li><a href="#" onclick="goToSection('causas')">⚠️ 4 Causas</a></li>
+                <li><a href="#" onclick="goToSection('fisiopatologia')">🧠 Fisiopatologia</a></li>
+                <li><a href="#" onclick="goToSection('diagnostico')">📊 Diagnóstico</a></li>
+                <li><a href="#" onclick="goToSection('idade')">👥 Idade</a></li>
+                <li><a href="#" onclick="goToSection('extra')">❗ Extra-abdominais</a></li>
+                <li><a href="#" onclick="goToSection('avaliacao')">🩺 Avaliação Clínica</a></li>
+                <li><a href="#" onclick="goToSection('laboratorio')">🧪 Laboratório</a></li>
+                <li><a href="#" onclick="goToSection('imagiologia')">🖼️ Imagiologia</a></li>
+                <li><a href="#" onclick="goToSection('management')">💊 Management</a></li>
+                <li><a href="#" onclick="goToSection('complicacoes')">⚠️ Complicações</a></li>
+                <li><a href="#" onclick="goToSection('prognostico')">✅ Prognóstico</a></li>
+                <li><a href="#" onclick="goToSection('conclusao')">🎯 Conclusão</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content" id="main-content">
+
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="header-section">
+                    <h1>Abdómen Agudo</h1>
+                    <p>Síndromes Grandes em Cirurgia Geral</p>
+                    <div class="course-info-box">
+                        <div class="info-item">
+                            <strong>Curso</strong>
+                            <p>Surgery 101</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Semestre</strong>
+                            <p>1 | 2025-2026</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Professor</strong>
+                            <p>Dr. Carlos Ferreira</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box emphasis-box">
+                    <strong>Bem-vindo ao Guia Clínico de Abdómen Agudo</strong>
+                    <p>Este recurso interativo foi desenvolvido para estudantes de medicina e profissionais de saúde, fornecendo uma compreensão abrangente sobre o diagnóstico e management do abdómen agudo. Navegue pelos tópicos no índice ao lado para explorar cada aspeto desta emergência médica crítica.</p>
+                </div>
+
+                <h2 class="section-title">Tópicos Cobertos</h2>
+                <ul class="content-list">
+                    <li>Definição e importância clínica</li>
+                    <li>Fisiopatologia completa (dor visceral, somática e referida)</li>
+                    <li>Diagnóstico diferencial por localização</li>
+                    <li>Fatores determinantes por idade</li>
+                    <li>Diagnósticos extra-abdominais</li>
+                    <li>Avaliação clínica sistemática</li>
+                    <li>Testes de laboratório e imagiologia</li>
+                    <li>Protocolos de management</li>
+                    <li>Complicações e prognóstico</li>
+                </ul>
+            </section>
+
+            <!-- Introdução -->
+            <section id="introducao" class="section">
+                <h2 class="section-title">Introdução</h2>
+
+                <div class="info-box emphasis-box">
+                    <strong>Definição de Abdómen Agudo</strong>
+                    <p>Dor abdominal de origem não traumática com duração máxima de 5 dias. Trata-se de uma condição que requer diagnóstico e tratamento imediato.</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Importância Clínica</h3>
+                <ul class="content-list">
+                    <li><strong>Prevalência:</strong> Representa 5-10% das visitas ao serviço de urgência</li>
+                    <li><strong>Urgência:</strong> Requer diagnóstico e tratamento imediato</li>
+                    <li><strong>Risco:</strong> Envolve condições potencialmente fatais que podem requerer intervenção cirúrgica urgente</li>
+                </ul>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Observação Clínica:</strong> A vasta maioria dos doentes que dão entrada nas urgências com um abdómen agudo aparentam estar de facto mal, com um "ar doente" imediatamente evidente ao olhar para o doente.
+                </div>
+            </section>
+
+            <!-- Apresentações -->
+            <section id="apresentacoes" class="section">
+                <h2 class="section-title">Apresentações Clínicas</h2>
+                <p class="section-subtitle">O abdómen agudo pode manifestar-se de várias formas:</p>
+
+                <ul class="content-list">
+                    <li>Dor abdominal e choque</li>
+                    <li>Peritonite generalizada</li>
+                    <li>Peritonite localizada (confinada a um quadrante)</li>
+                    <li>Obstrução intestinal</li>
+                    <li>Dor abdominal inespecífica ou de causa médica (não cirúrgica)</li>
+                    <li>Origem ginecológica</li>
+                    <li>Trauma</li>
+                </ul>
+
+                <div class="info-box danger-sign">
+                    <strong>Alerta Clínico:</strong> A apresentação pode variar significativamente dependendo da causa subjacente, localização e extensão da patologia. O reconhecimento precoce é vital.
+                </div>
+            </section>
+
+            <!-- 4 Causas -->
+            <section id="causas" class="section">
+                <h2 class="section-title">4 Causas Mais Comuns de Abdómen Agudo</h2>
+
+                <table>
+                    <tr>
+                        <th>1. Perfuração</th>
+                        <th>2. Obstrução</th>
+                        <th>3. Inflamação/Infecção</th>
+                        <th>4. Isquémia</th>
+                    </tr>
+                    <tr>
+                        <td>Ruptura de víscera oca</td>
+                        <td>Bloqueio do fluxo intestinal</td>
+                        <td>Inflamação peritoneal</td>
+                        <td>Comprometimento vascular</td>
+                    </tr>
+                </table>
+
+                <div class="info-box danger-sign">
+                    <strong>Urgência Crítica:</strong> Todas estas condições apresentam risco de vida iminente e requerem diagnóstico e intervenção cirúrgica urgentes. O atraso no reconhecimento pode resultar em morte.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Condições Específicas que Ameaçam a Vida</h3>
+                <ul class="content-list">
+                    <li><strong>Aneurisma da aorta abdominal (AAA):</strong> Mortalidade >50% se rotura</li>
+                    <li><strong>Isquemia mesentérica:</strong> Mortalidade 60-80% com atraso no diagnóstico</li>
+                    <li><strong>Peritonite bacteriana espontânea:</strong> Requer antibióticos imediatos</li>
+                    <li><strong>Pancreatite necrotizante:</strong> Risco de falência multiorgânica</li>
+                </ul>
+            </section>
+
+            <!-- Fisiopatologia -->
+            <section id="fisiopatologia" class="section">
+                <h2 class="section-title">Fisiopatologia da Dor Abdominal</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">1. Dor Visceral</h3>
+                <div class="info-box comparison-box">
+                    <strong>Origem:</strong>
+                    <p>Vísceras abdominais inervadas por fibras nervosas autónomas; responde à distensão ou contração muscular</p>
+                </div>
+
+                <div class="info-box comparison-box">
+                    <strong>Características:</strong>
+                    <p>Dor vaga, surda e frequentemente acompanhada de náuseas</p>
+                </div>
+
+                <div class="info-box comparison-box">
+                    <strong>Localização (pela origem embrionária):</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li>Estruturas superiores (estômago, vesícula, fígado, pâncreas) → dor no abdómen superior</li>
+                        <li>Estruturas médias (intestino delgado, cólon proximal, apêndice) → dor periumbilical</li>
+                        <li>Estruturas inferiores (intestino distal, trato urinário) → dor no abdómen inferior</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">2. Dor Somática</h3>
+                <div class="info-box comparison-box">
+                    <strong>Origem:</strong>
+                    <p>Peritoneu parietal inervado por nervos somáticos; responde a estímulos infecciosos, químicos ou inflamatórios</p>
+                </div>
+
+                <div class="info-box comparison-box">
+                    <strong>Características:</strong>
+                    <p>Dor intensa, aguda e bem localizada</p>
+                </div>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Significado Clínico:</strong> A presença de dor somática indica irritação peritoneal e sugere fortemente inflamação ou infecção que pode requerer cirurgia.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">3. Dor Referida</h3>
+                <div class="info-box comparison-box">
+                    <strong>Definição:</strong>
+                    <p>Dor sentida num local diferente da sua origem real, resultante da convergência de fibras nervosas a nível medular</p>
+                </div>
+
+                <div class="info-box emphasis-box">
+                    <strong>Exemplos clínicos importantes:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li>Dor na escápula direita em colecistite (irritação peritoneal superior)</li>
+                        <li>Dor inguinal ou nos testículos em cólica renal</li>
+                        <li>Dor no ombro direito em abcesso hepático superior (irritação do nervo frénico)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Diagnóstico Diferencial -->
+            <section id="diagnostico" class="section">
+                <h2 class="section-title">Diagnóstico Diferencial</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Por Quadrantes Abdominais</h3>
+                <div class="quadrant-grid">
+                    <div class="quadrant-box">
+                        <strong>🔴 Quadrante Superior Direito (QSD)</strong>
+                        <p>Patologias biliares, doenças hepáticas, pneumonia, embolia pulmonar</p>
+                    </div>
+                    <div class="quadrant-box">
+                        <strong>🟡 Quadrante Superior Esquerdo (QSE)</strong>
+                        <p>Gastroesofágicas, cardíacas, pancreáticas, esplênicas</p>
+                    </div>
+                    <div class="quadrant-box">
+                        <strong>🟢 Quadrante Inferior Direito (QID)</strong>
+                        <p>Apendicite, origem ginecológica, doenças do cólon</p>
+                    </div>
+                    <div class="quadrant-box">
+                        <strong>🔵 Quadrante Inferior Esquerdo (QIE)</strong>
+                        <p>Diverticulite, colite, patologias ginecológicas</p>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Localizações Especiais</h3>
+                <div class="quadrant-grid">
+                    <div class="quadrant-box">
+                        <strong>Epigástrio</strong>
+                        <p>Patologias biliares, esofagite, úlcera péptica, pancreatite, dissecção aórtica</p>
+                    </div>
+                    <div class="quadrant-box">
+                        <strong>Periumbilical</strong>
+                        <p>Apendicite precoce, obstrução intestinal, isquemia mesentérica</p>
+                    </div>
+                    <div class="quadrant-box">
+                        <strong>Suprapúbica</strong>
+                        <p>Cistite, pielonefrite, gravidez ectópica, patologias ginecológicas</p>
+                    </div>
+                    <div class="quadrant-box">
+                        <strong>Difusa</strong>
+                        <p>Isquemia mesentérica, peritonite, obstrução, perfuração</p>
+                    </div>
+                </div>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Pearls clínica importante:</strong> A apendicite frequentemente começa com dor periumbilical que migra para QID. Este padrão de migração é altamente sugestivo de apendicite.
+                </div>
+            </section>
+
+            <!-- Idade como Fator -->
+            <section id="idade" class="section">
+                <h2 class="section-title">Idade como Fator Determinante</h2>
+                <p class="section-subtitle">O diagnóstico diferencial varia significativamente com a idade</p>
+
+                <div class="age-timeline">
+                    <div class="age-period">
+                        <strong>&lt; 3 anos:</strong> Gastroenterite, invaginação intestinal (intussuscepção), pielonefrite, vólvulo do intestino médio
+                    </div>
+                    <div class="age-period">
+                        <strong>4-11 anos:</strong> Gastroenterite, apendicite, trauma abdominal, linfadenite mesentérica, infeção urinária
+                    </div>
+                    <div class="age-period">
+                        <strong>12-18 anos:</strong> Apendicite, gastroenterite, mittelschmerz (dor ovulatória), salpingite aguda, torção ovárica, gravidez ectópica rota
+                    </div>
+                    <div class="age-period">
+                        <strong>18-65 anos:</strong> Dor abdominal inespecífica, apendicite, doença biliar, vias biliares, úlcera péptica
+                    </div>
+                    <div class="age-period">
+                        <strong>&gt; 66 anos:</strong> Neoplasia, oclusão intestinal, úlcera péptica, hérnias encarceradas, isquemia mesentérica, AAA
+                    </div>
+                </div>
+
+                <div class="info-box emphasis-box">
+                    <strong>Implicação Clínica:</strong> A idade deve sempre ser integrada na avaliação diferencial. Certos diagnósticos são muito mais prováveis em grupos etários específicos.
+                </div>
+            </section>
+
+            <!-- Diagnósticos Extra-abdominais -->
+            <section id="extra" class="section">
+                <h2 class="section-title">Diagnósticos Extra-abdominais</h2>
+                <p class="section-subtitle">Não esquecer que dor abdominal pode ter origem fora do abdómen</p>
+
+                <table>
+                    <tr>
+                        <th>Cardíacos</th>
+                        <th>Pulmonares</th>
+                        <th>Metabólicos</th>
+                    </tr>
+                    <tr>
+                        <td>Enfarte do miocárdio<br>Pericardite<br>Miocardite</td>
+                        <td>Pneumonia<br>Embolia pulmonar<br>Pleurite</td>
+                        <td>Cetoacidose diabética<br>Uremia<br>Hipercalcemia</td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <th>Tóxicos</th>
+                        <th>Hematológicos</th>
+                        <th>Infecciosos</th>
+                    </tr>
+                    <tr>
+                        <td>Intoxicações<br>Envenenamentos<br>Síndrome de abstinência</td>
+                        <td>Crise de células falciformes<br>Linfadenopatia<br>Hemorragia anticoagulante</td>
+                        <td>Gastroenterite<br>Doenças parasitárias<br>Malária<br>Febre Tifóide</td>
+                    </tr>
+                </table>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Importante:</strong> Uma história clínica rigorosa e exame físico sistemático ajudam a distinguir causas abdominais de extra-abdominais. Sempre pesquisar sintomas sistémicos.
+                </div>
+            </section>
+
+            <!-- Avaliação Clínica -->
+            <section id="avaliacao" class="section">
+                <h2 class="section-title">Avaliação Clínica Sistemática</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Triagem Inicial</h3>
+                <ul class="content-list">
+                    <li><strong>Sinais vitais:</strong> PA, FC, FR, Temperatura, SatO2</li>
+                    <li><strong>Primeira impressão:</strong> Observar o "ar doente" - é imediatamente evidente</li>
+                    <li><strong>Avaliação hemodinâmica:</strong> Hipotensão + Taquicardia = Ressuscitação urgente</li>
+                </ul>
+
+                <div class="info-box danger-sign">
+                    <strong>Alerta crítico:</strong> Hipotensão + Taquicardia + Dor abdominal = Considerar AAA rotura ou sépsis. Requer ressuscitação volémica agressiva IMEDIATA.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Exame Objetivo</h3>
+                <ul class="content-list">
+                    <li><strong>Exame retal:</strong> Importante quando se suspeita de hemorragia GI ou patologia prostática</li>
+                    <li><strong>Exame pélvico:</strong> SEMPRE realizar em mulheres com dor abdominal inferior</li>
+                    <li><strong>Exame testicular:</strong> Jovens do sexo masculino com dor abdominal devem excluir torção testicular</li>
+                    <li><strong>Avaliação de hérnias:</strong> Revisar todos os pontos de hernia (umbilical, inguinal, femoral, incisional)</li>
+                </ul>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Apresentações Clínicas Clássicas</h3>
+                <div class="info-box emphasis-box">
+                    <strong>Apendicite Clássica:</strong> Dor periumbilical vaga que migra para QID onde se torna bem localizada e intensa (após 12-24h)
+                </div>
+
+                <div class="info-box emphasis-box">
+                    <strong>Torção Ovárica:</strong> Dor súbita, intensa, unilateral no QI, intermitente (piora e melhora), com vómitos
+                </div>
+
+                <div class="info-box danger-sign">
+                    <strong>AAA Roto:</strong> Pode simular cólica renal ou "lombalgia benigna". Pensar sempre em AAA em idosos com dor abdominal ou costal súbita.
+                </div>
+
+                <div class="info-box danger-sign">
+                    <strong>Isquemia Mesentérica:</strong> Dor súbita, intensa, desproporcional ao exame físico. Frequentemente com diarreia. Mortalidade muito elevada.
+                </div>
+            </section>
+
+            <!-- Laboratório -->
+            <section id="laboratorio" class="section">
+                <h2 class="section-title">Investigações de Laboratório</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Testes Essenciais</h3>
+                <ul class="content-list">
+                    <li><strong>Hemograma completo:</strong> Avaliação de infeções (leucocitose), anemias (hemorragia)</li>
+                    <li><strong>Painel metabólico:</strong> Eletrólitos, creatinina (função renal), glucose</li>
+                    <li><strong>Amilase e Lipase:</strong> Exclusão/diagnóstico de pancreatite</li>
+                    <li><strong>PT/INR e PTT:</strong> Avaliação de coagulopatia (risco cirúrgico)</li>
+                    <li><strong>Urina:</strong> Excluir infeção urinária, hematúria</li>
+                    <li><strong>β-HCG:</strong> Excluir gravidez em mulheres em idade reprodutiva</li>
+                    <li><strong>Lactato:</strong> Em suspeita de sépsis ou isquemia mesentérica (prognóstico)</li>
+                </ul>
+
+                <table>
+                    <tr>
+                        <th>Teste</th>
+                        <th>Indicação</th>
+                        <th>Interpretação</th>
+                    </tr>
+                    <tr>
+                        <td>Hemograma</td>
+                        <td>Todos os casos</td>
+                        <td>Leucocitose → inflamação/infeção; Anemia → hemorragia</td>
+                    </tr>
+                    <tr>
+                        <td>Amilase/Lipase</td>
+                        <td>Epigástrio/dor difusa</td>
+                        <td>Elevação → pancreatite; Valor muito alto = mais específico</td>
+                    </tr>
+                    <tr>
+                        <td>Lactato</td>
+                        <td>Hemodinamicamente instável</td>
+                        <td>Elevação → isquemia/sépsis; Prognóstico adverso</td>
+                    </tr>
+                    <tr>
+                        <td>β-HCG</td>
+                        <td>Mulheres reprodutivas</td>
+                        <td>Positivo → considerar ectópica, molar</td>
+                    </tr>
+                </table>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Nota importante:</strong> Achados laboratoriais normais NÃO excluem doença intra-abdominal grave. A história clínica e exame físico permanecem fundamentais.
+                </div>
+            </section>
+
+            <!-- Imagiologia -->
+            <section id="imagiologia" class="section">
+                <h2 class="section-title">Investigações de Imagiologia</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Eletrocardiograma</h3>
+                <div class="info-box comparison-box">
+                    <strong>Indicação:</strong> Adultos > 40 anos com dor abdominal
+                    <p><strong>Objetivo:</strong> Excluir enfarte do miocárdio como causa de dor abdominal. Importante avaliar fibrilhação auricular em suspeita de isquemia mesentérica.</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Ecografia à Cabeceira (Point-of-Care)</h3>
+                <div class="info-box comparison-box">
+                    <strong>Vantagens:</strong> Rápida, não-invasiva, sem radiação, pode ser repetida à cabeceira
+                    <p><strong>Diagnósticos possíveis:</strong> Patologias biliares agudas, perfuração GI, pancreatite aguda, colite, obstrução intestinal, aneurismas abdominais</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Radiografia Abdominal</h3>
+                <div class="info-box comparison-box">
+                    <strong>Indicação:</strong> Suspeita de perfuração ou obstrução intestinal
+                    <p><strong>Achados:</strong> Ar livre (indicativo de perfuração), nível hidroaéreo (obstrução), padrão de alças intestinais dilatadas</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">TC Abdominal</h3>
+                <div class="info-box emphasis-box">
+                    <strong>Exame mais frequentemente usado e mais útil</strong>
+                    <p>Útil para maioria das causas: apendicite, colecistite, isquemia mesentérica, aneurisma roto, diverticulite, pancreatite</p>
+                </div>
+
+                <div class="info-box emphasis-box">
+                    <strong>Angio-TC com contraste:</strong> Detecta ar livre, alterações inflamatórias, isquemia intestinal e patologia vascular. Permite laparotomia mais precoce.
+                </div>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Estratégia:</strong> Em doentes hemodinamicamente instáveis com suspeita de AAA, fazer TC imediata (sem esperar estabilização). O tempo é vida.
+                </div>
+            </section>
+
+            <!-- Management -->
+            <section id="management" class="section">
+                <h2 class="section-title">Management Clínico</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">1. Ressuscitação Volémica</h3>
+                <div class="info-box management-step">
+                    <strong>Indicação:</strong> Hipotensão + Taquicardia
+                    <p><strong>Ação:</strong> Reposição agressiva e imediata com acesso venoso calibroso (18G ou maior). Iniciar cristaloides (lactato de Ringer ou soro fisiológico).</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">2. Antibióticos</h3>
+                <div class="info-box management-step">
+                    <strong>Indicação:</strong> Suspeita de infeção, contaminação peritoneal ou sépsis
+                    <p><strong>Ação:</strong> Antibióticos de largo espetro contra microrganismos entéricos gram-negativos. Administração IMEDIATA (golden hour na sépsis).</p>
+                </div>
+
+                <div class="info-box danger-sign">
+                    <strong>⏰ Tempo crítico:</strong> Cada hora de atraso em antibióticos aumenta mortalidade em sépsis. Iniciar antes de confirmar diagnóstico se houver suspeita clínica.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">3. Analgesia</h3>
+                <div class="info-box management-step">
+                    <strong>Indicação:</strong> TODOS os doentes com dor abdominal aguda
+                    <p><strong>Segurança:</strong> Analgésicos NÃO alteram significativamente o diagnóstico nem prejudicam a avaliação cirúrgica. Administrar mesmo antes de exames de imagem.</p>
+                </div>
+
+                <div class="info-box clinical-pearl">
+                    💡 <strong>Mito derrubado:</strong> A ideia de que analgésicos mascaram a dor é completamente falsa. Pelo contrário, aumentam conforto do doente e confiança na relação médico-doente.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">4. Antieméticos</h3>
+                <div class="info-box management-step">
+                    <strong>Indicação:</strong> Presença de náuseas ou vómitos
+                    <p><strong>Benefício:</strong> Controlo sintomático, reduz risco de aspiração, melhora tolerância oral pós-operatória</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">5. Monitorização Contínua</h3>
+                <div class="info-box management-step">
+                    <strong>Ação:</strong> Monitores cardíacos, PA, frequência respiratória, satO2
+                    <p><strong>Reavaliação dinâmica:</strong> Sinais vitais durante ressuscitação. Doentes com dor abdominal aguda pode deteriorar rapidamente.</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">6. Avaliação Cirúrgica</h3>
+                <div class="info-box danger-sign">
+                    <strong>Princípio Fundamental:</strong> TODO o doente com abdómen agudo DEVE ser avaliado por um cirurgião. Avaliação cirúrgica precoce é essencial.
+                </div>
+
+                <ul class="content-list">
+                    <li><strong>Doente hemodinamicamente estável:</strong> Exames de imagem para definir diagnóstico antes de cirurgia</li>
+                    <li><strong>Doente hemodinamicamente instável:</strong> Pode ser necessária intervenção cirúrgica imediata sem exames adicionais</li>
+                    <li><strong>Emergência cirúrgica suspeita:</strong> Contactar cirurgião IMEDIATAMENTE</li>
+                </ul>
+            </section>
+
+            <!-- Complicações -->
+            <section id="complicacoes" class="section">
+                <h2 class="section-title">Complicações se Não Tratado</h2>
+
+                <div class="info-box danger-sign">
+                    <strong>Cascata de complicações:</strong>
+                </div>
+
+                <ul class="content-list">
+                    <li><strong>Sépsis:</strong> Progressão para doença sistémica grave, choque, insuficiência orgânica</li>
+                    <li><strong>Necrose intestinal:</strong> Isquemia prolongada → gangrena</li>
+                    <li><strong>Perfuração secundária:</strong> Extensão da necrose → peritonite</li>
+                    <li><strong>Disfunção multiorgânica:</strong> Sépsis sistémica → falência renal, hepática, cardíaca</li>
+                    <li><strong>Fístula:</strong> Sequela pós-operatória com drenagem prolongada</li>
+                    <li><strong>Morte:</strong> Mortalidade significativa em diagnóstico tardio</li>
+                </ul>
+
+                <div class="info-box clinical-pearl">
+                    ⏰ <strong>Tempo crítico:</strong> O prognóstico depende fundamentalmente da causa subjacente e da rapidez de intervenção. Cada hora de atraso piora o resultado significativamente.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Sinais de Deterioração</h3>
+                <ul class="content-list">
+                    <li>Febre > 39°C</li>
+                    <li>Taquicardia progressiva</li>
+                    <li>Alteração do estado mental</li>
+                    <li>Oligúria</li>
+                    <li>Hipoxemia</li>
+                    <li>Coagulopatia (INR ↑, plaquetas ↓)</li>
+                </ul>
+            </section>
+
+            <!-- Prognóstico -->
+            <section id="prognostico" class="section">
+                <h2 class="section-title">Prognóstico e Desfecho</h2>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Mudança de Paradigma</h3>
+                <ul class="content-list">
+                    <li><strong>Historicamente:</strong> Doente encaminhado diretamente para bloco operatório</li>
+                    <li><strong>Atualmente:</strong> Ecografia/TC determinam causa antes de cirurgia</li>
+                    <li><strong>Vantagem:</strong> Cirurgião sabe antecipadamente o que esperar</li>
+                    <li><strong>Evita:</strong> Cirurgias desnecessárias em causas médicas (não cirúrgicas)</li>
+                </ul>
+
+                <div class="info-box emphasis-box">
+                    <strong>Exemplos de causas médicas (não cirúrgicas):</strong>
+                    <p>Pancreatite aguda, anemia falciforme, cetoacidose diabética, crise adrenal, pielonefrite</p>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Fatores Prognósticos</h3>
+                <table>
+                    <tr>
+                        <th>Fator</th>
+                        <th>Significado</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Idade</strong></td>
+                        <td>Idade > 65 anos = mortalidade aumentada</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lactato sérico</strong></td>
+                        <td>Elevado = isquemia/sépsis; Prognóstico adverso</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Score APACHE</strong></td>
+                        <td>Avalia gravidade sistémica</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tempo até cirurgia</strong></td>
+                        <td>Atraso = piores resultados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Etiologia</strong></td>
+                        <td>AAA, isquemia mesentérica = mortalidade muito elevada</td>
+                    </tr>
+                </table>
+
+                <div class="info-box emphasis-box">
+                    <strong>Conclusão:</strong> Diagnóstico diferencial meticuloso, investigação apropriada e management rápido otimizam os resultados clínicos. <strong>Prognóstico excelente com diagnóstico e tratamento precoce.</strong>
+                </div>
+            </section>
+
+            <!-- Conclusão -->
+            <section id="conclusao" class="section">
+                <div class="header-section">
+                    <h2 style="color: white; border: none; margin-bottom: 1rem;">Conclusões Principais</h2>
+                    
+                    <ul class="content-list" style="text-align: left; color: white;">
+                        <li>Abdómen agudo é emergência médica com taxa de mortalidade significativa se não tratado</li>
+                        <li>Diagnóstico diferencial baseado em: história clínica, exame físico, idade e localização da dor</li>
+                        <li>Investigações complementares (testes laboratório, ECG, ecografia, TC) são cruciais para diagnóstico correto</li>
+                        <li>Management rápido e apropriado reduz complicações e mortalidade significativamente</li>
+                        <li>Ressuscitação volémica, antibióticos, analgesia e avaliação cirúrgica são pilares do tratamento</li>
+                        <li><strong>Prognóstico excelente com diagnóstico e tratamento precoce</strong></li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--light-bg); border-radius: 8px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Para Estudantes de Medicina</h3>
+                    <p>Este guia fornece uma base sólida para compreender o abdómen agudo. Integre este conhecimento com a experiência clínica, supervisão de casos reais e consulta de referências atualizadas. O pensamento clínico crítico é essencial.</p>
+                    
+                    <h3 style="color: var(--primary-color); margin-top: 1.5rem; margin-bottom: 1rem;">Referências Recomendadas</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Sabiston Textbook of Surgery: The Biological Basis of Modern Surgical Practice</li>
+                        <li>Schwartz's Principles of Surgery</li>
+                        <li>American College of Surgeons - Trauma and Critical Care</li>
+                        <li>UpToDate: Acute abdomen</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" onclick="scrollToTop()">↑</div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Abdómen Agudo - Guia Clínico Interativo</strong></p>
+        <p>Surgery 101 | Semester 1 | 2025-2026 | Prof. Dr. Carlos Ferreira</p>
+        <p>© 2025 Faculdade de Medicina | Universidade Católica</p>
+        <p style="margin-top: 1rem; font-size: 0.85em;">Este guia é fornecido apenas para fins educacionais e não substitui aconselhamento clínico profissional.</p>
+    </footer>
+
+    <script>
+        // Section Navigation
+        function goToSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+                
+                // Update active menu item
+                const menuItems = document.querySelectorAll('.sidebar-menu a');
+                menuItems.forEach(item => item.classList.remove('active'));
+                event.target.classList.add('active');
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            goToSection(sectionId);
+        }
+
+        // Back to Top
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.sidebar-menu a');
+            
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (searchTerm === '' || text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[onclick*="goToSection"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const match = this.getAttribute('onclick').match(/goToSection\('([^']+)'\)/);
+                if (match) {
+                    goToSection(match[1]);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
